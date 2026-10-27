@@ -1,4 +1,4 @@
-# SpineApp 📖
+# Spine 📖
 
 Een mobiele boekentracker in React Native met Expo. Hou bij wat je leest, wat je gelezen hebt en wat je nog wil lezen, schrijf reviews en exporteer je leeslijst als PDF.
 
