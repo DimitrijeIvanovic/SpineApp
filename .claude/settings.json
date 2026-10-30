@@ -1,5 +1,16 @@
 {
-  "enabledPlugins": {
-    "expo@claude-plugins-official": true
+  "permissions": {
+    "deny": [
+      "Edit(/app/**)",
+      "Edit(/components/**)",
+      "Edit(/context/**)",
+      "Edit(/hooks/**)",
+      "Edit(/types/**)",
+      "Edit(/services/**)",
+      "Edit(/app.json)",
+      "Edit(/CLAUDE.md)",
+      "Edit(/.claude/**)"
+    ],
+    "ask": ["Bash"]
   }
 }
