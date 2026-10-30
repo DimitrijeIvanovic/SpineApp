@@ -7,7 +7,7 @@ Individueel project voor het vak **Webframeworks** (Graduaat Programmeren, AP Ho
 ## Functionaliteit
 
 - Boeken zoeken via de [Open Library API](https://openlibrary.org/developers/api) of de barcode (ISBN) scannen met de camera
-- Elk boek een status geven: *te lezen*, *aan het lezen* of *gelezen*
+- Elk boek een status geven: _te lezen_, _aan het lezen_ of _gelezen_
 - Je voortgang bijhouden (huidige pagina) en een review met score (1–5) schrijven
 - Een eigen cover kiezen uit je galerij
 - Een dagelijkse leesherinnering op een tijdstip naar keuze
@@ -16,36 +16,36 @@ Individueel project voor het vak **Webframeworks** (Graduaat Programmeren, AP Ho
 
 ## Tech stack
 
-| Onderdeel | Technologie |
-| --- | --- |
-| Framework | React Native + Expo (TypeScript) |
-| Navigatie | Expo Router (tabs + stack + modal) |
-| Styling | NativeWind (Tailwind CSS) |
-| Backend | Supabase (`@supabase/supabase-js`) |
-| Lokale opslag | AsyncStorage |
-| Externe API | Open Library |
+| Onderdeel     | Technologie                        |
+| ------------- | ---------------------------------- |
+| Framework     | React Native + Expo (TypeScript)   |
+| Navigatie     | Expo Router (tabs + stack + modal) |
+| Styling       | NativeWind (Tailwind CSS)          |
+| Backend       | Supabase (`@supabase/supabase-js`) |
+| Lokale opslag | AsyncStorage                       |
+| Externe API   | Open Library                       |
 
 ### Expo-features
 
-| Feature | Package | Gebruik in de app |
-| --- | --- | --- |
-| Camera | `expo-camera` | Barcode (ISBN) van een boek scannen |
-| ImagePicker | `expo-image-picker` | Eigen boekcover kiezen |
+| Feature       | Package              | Gebruik in de app                                                 |
+| ------------- | -------------------- | ----------------------------------------------------------------- |
+| Camera        | `expo-camera`        | Barcode (ISBN) van een boek scannen                               |
+| ImagePicker   | `expo-image-picker`  | Eigen boekcover kiezen                                            |
 | Notifications | `expo-notifications` | Dagelijkse leesherinnering, melding bij het halen van je leesdoel |
-| Print | `expo-print` | PDF van je boekenlijst, gefilterd op status |
+| Print         | `expo-print`         | PDF van je boekenlijst, gefilterd op status                       |
 
 Voor elke feature vraagt de app de nodige permissie aan. Weigert de gebruiker die, dan blijft de app bruikbaar en verschijnt er uitleg.
 
 ## Schermen
 
-| Scherm | Route |
-| --- | --- |
-| Bibliotheek | `app/(tabs)/index.tsx` |
-| Zoeken & toevoegen | `app/(tabs)/search.tsx` |
-| Profiel & instellingen | `app/(tabs)/profile.tsx` |
-| Scanner (modal) | `app/scan.tsx` |
-| Boekdetail | `app/books/[id].tsx` |
-| Review schrijven | `app/books/[id]/review.tsx` |
+| Scherm                 | Route                       |
+| ---------------------- | --------------------------- |
+| Bibliotheek            | `app/(tabs)/index.tsx`      |
+| Zoeken & toevoegen     | `app/(tabs)/search.tsx`     |
+| Profiel & instellingen | `app/(tabs)/profile.tsx`    |
+| Scanner (modal)        | `app/scan.tsx`              |
+| Boekdetail             | `app/books/[id].tsx`        |
+| Review schrijven       | `app/books/[id]/review.tsx` |
 
 ## Projectstructuur
 
@@ -104,12 +104,12 @@ Scan de QR-code met Expo Go (Android) of met de camera-app (iOS). Je gsm en comp
 
 Volgens de projectopdracht mag AI alleen voor bepaalde onderdelen gebruikt worden. In deze repo:
 
-| Met AI | Zonder AI |
-| --- | --- |
-| Projectvoorstel en wireframes (`docs/`) | Routing en schermen (`app/`) |
-| Supabase-verbinding en queries (`supabase/`) | Componenten, state en context |
-| Styling en NativeWind-config (`styles/`, configbestanden) | AsyncStorage en Expo-features |
-| | TypeScript-interfaces en de rest van de code |
+| Met AI                                                    | Zonder AI                                    |
+| --------------------------------------------------------- | -------------------------------------------- |
+| Projectvoorstel en wireframes (`docs/`)                   | Routing en schermen (`app/`)                 |
+| Supabase-verbinding en queries (`supabase/`)              | Componenten, state en context                |
+| Styling en NativeWind-config (`styles/`, configbestanden) | AsyncStorage en Expo-features                |
+|                                                           | TypeScript-interfaces en de rest van de code |
 
 Commits met AI-gegenereerde code beginnen met `[AI]`.
 
