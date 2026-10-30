@@ -1,56 +1,118 @@
-# Welcome to your Expo app 👋
+# Spine 📖
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Een mobiele boekentracker in React Native met Expo. Hou bij wat je leest, wat je gelezen hebt en wat je nog wil lezen, schrijf reviews en exporteer je leeslijst als PDF.
 
-## Get started
+Individueel project voor het vak **Webframeworks** (Graduaat Programmeren, AP Hogeschool, 2026–2027).
 
-1. Install dependencies
+## Functionaliteit
 
-   ```bash
-   npm install
-   ```
+- Boeken zoeken via de [Open Library API](https://openlibrary.org/developers/api) of de barcode (ISBN) scannen met de camera
+- Elk boek een status geven: _te lezen_, _aan het lezen_ of _gelezen_
+- Je voortgang bijhouden (huidige pagina) en een review met score (1–5) schrijven
+- Een eigen cover kiezen uit je galerij
+- Een dagelijkse leesherinnering op een tijdstip naar keuze
+- Een gefilterde boekenlijst exporteren als PDF
+- Een jaarlijks leesdoel met statistieken
 
-2. Start the app
+## Tech stack
 
-   ```bash
-   npx expo start
-   ```
+| Onderdeel     | Technologie                        |
+| ------------- | ---------------------------------- |
+| Framework     | React Native + Expo (TypeScript)   |
+| Navigatie     | Expo Router (tabs + stack + modal) |
+| Styling       | NativeWind (Tailwind CSS)          |
+| Backend       | Supabase (`@supabase/supabase-js`) |
+| Lokale opslag | AsyncStorage                       |
+| Externe API   | Open Library                       |
 
-In the output, you'll find options to open the app in a
+### Expo-features
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+| Feature       | Package              | Gebruik in de app                                                 |
+| ------------- | -------------------- | ----------------------------------------------------------------- |
+| Camera        | `expo-camera`        | Barcode (ISBN) van een boek scannen                               |
+| ImagePicker   | `expo-image-picker`  | Eigen boekcover kiezen                                            |
+| Notifications | `expo-notifications` | Dagelijkse leesherinnering, melding bij het halen van je leesdoel |
+| Print         | `expo-print`         | PDF van je boekenlijst, gefilterd op status                       |
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Voor elke feature vraagt de app de nodige permissie aan. Weigert de gebruiker die, dan blijft de app bruikbaar en verschijnt er uitleg.
 
-## Get a fresh project
+## Schermen
 
-When you're ready, run:
+| Scherm                 | Route                       |
+| ---------------------- | --------------------------- |
+| Bibliotheek            | `app/(tabs)/index.tsx`      |
+| Zoeken & toevoegen     | `app/(tabs)/search.tsx`     |
+| Profiel & instellingen | `app/(tabs)/profile.tsx`    |
+| Scanner (modal)        | `app/scan.tsx`              |
+| Boekdetail             | `app/books/[id].tsx`        |
+| Review schrijven       | `app/books/[id]/review.tsx` |
 
-```bash
-npm run reset-project
+## Projectstructuur
+
+```
+app/          Schermen en navigatie (Expo Router)
+components/   Herbruikbare componenten (BookCard, StatusFilter, StarRating, ...)
+context/      BooksContext en SettingsContext
+hooks/        Eigen hooks
+types/        TypeScript-interfaces (Book, Review, Settings)
+services/     AsyncStorage, notificaties, PDF-export, Open Library
+supabase/     Supabase-client, queries en databankschema
+styles/       Thema en class-presets voor NativeWind
+docs/         Projectvoorstel en wireframes
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+## Aan de slag
 
-### Other setup steps
+### Vereisten
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+- [Node.js](https://nodejs.org/) (LTS)
+- De app **Expo Go** op je smartphone ([Android](https://play.google.com/store/apps/details?id=host.exp.exponent) / [iOS](https://apps.apple.com/app/expo-go/id982107779))
+- Een (gratis) [Supabase](https://supabase.com/)-project
 
-## Learn more
+### Installatie
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+git clone <url-van-deze-repo>
+cd spineapp
+npm install
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Omgevingsvariabelen
 
-## Join the community
+Maak een bestand `.env` in de root van het project:
 
-Join our community of developers creating universal apps.
+```
+EXPO_PUBLIC_SUPABASE_URL=https://<jouw-project>.supabase.co
+EXPO_PUBLIC_SUPABASE_ANON_KEY=<jouw-anon-key>
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Je vindt beide waarden in het Supabase-dashboard onder **Project Settings → API**. Het bestand `.env` staat in `.gitignore` en wordt niet mee gecommit.
+
+### Databank
+
+Voer `supabase/schema.sql` uit in de SQL-editor van Supabase. Dat maakt de tabellen `books` en `reviews` aan, samen met hun policies.
+
+### Starten
+
+```bash
+npx expo start
+```
+
+Scan de QR-code met Expo Go (Android) of met de camera-app (iOS). Je gsm en computer moeten op hetzelfde netwerk zitten.
+
+## Gebruik van AI
+
+Volgens de projectopdracht mag AI alleen voor bepaalde onderdelen gebruikt worden. In deze repo:
+
+| Met AI                                                    | Zonder AI                                    |
+| --------------------------------------------------------- | -------------------------------------------- |
+| Projectvoorstel en wireframes (`docs/`)                   | Routing en schermen (`app/`)                 |
+| Supabase-verbinding en queries (`supabase/`)              | Componenten, state en context                |
+| Styling en NativeWind-config (`styles/`, configbestanden) | AsyncStorage en Expo-features                |
+|                                                           | TypeScript-interfaces en de rest van de code |
+
+Commits met AI-gegenereerde code beginnen met `[AI]`.
+
+## Auteur
+
+**Dimitrije Ivanovic** · [GitHub](https://github.com/DimitrijeIvanovic) · [Portfolio](https://dimitrije-portfolio.mooo.com)
